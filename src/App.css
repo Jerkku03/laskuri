@@ -1,9 +1,39 @@
 
-#kokosivu {
+#body {
+  height: 100vh;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  
+}
+
+#header {
+  background-color:#1f2937;
+  display: flex;
+  justify-content: space-between;   
+  padding: 16px;
+  margin: 0;
+}
+
+#logo {
+  font-size: 18px;
+  color: grey;
+  margin: 0;
+  padding: 0;
+}
+
+#sivut {
+  font-size: 18px;
+  color: grey;
+  display: flex;
+  gap: 5px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
 }
 
 #sisalto {

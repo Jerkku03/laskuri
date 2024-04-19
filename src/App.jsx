@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 
 //materiaali vaihtoehdot
 const Materiaalit = () => {
@@ -6,22 +7,22 @@ const Materiaalit = () => {
   const lastulevy = 'LASTULEVY 11 P1 11X1200X2600 MM POHJAMAALATTU 3,12 M²'
   const kestopuu = 'KESTOPUU HÖYLÄTTY RAW AB 28X120 MM RUSKEA VIISTETTY'
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('toimii');
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(document.getElementById('materiaalit').value)
+    console.log(document.getElementById('numero').value)
   }
 
   return (
-      <form onSubmit={handleSubmit} id='sisalto'>
-        <p>materiaali:</p>
-        <select name='materiaalit'>
-            <option value="lastulevy">{lastulevy}</option>
-            <option value='kestopuu'>{kestopuu}</option>
-            <option value="naulapaketti">naulapaketti</option>
-          </select>
-          <p>kpl:</p>
-          <input type="number"/>
-          <input type="submit" />
+      <form id='sisalto'>
+          <label htmlFor='materiaalit'>materiaali:</label>
+          <select name='materiaalit' label='materiaali:' id='materiaalit'>
+              <option>{lastulevy}</option>
+              <option>{kestopuu}</option>
+            </select>
+            <label htmlFor='numero'>kpl:</label>
+            <input id='numero' name='numero' type='number' label='numero' required/>
+            <button onClick={onSubmit}>Lisää</button>
         </form>
   )
 }
@@ -62,10 +63,17 @@ const Tulosta = () => {
 
 const App = () => {
 
-  const lista = {}
+  const [lista, setLista] = useState([])
 
   return (
-  <div id="kokosivu">
+  <div id="body">
+    <div id='header'>
+      <p id='logo'>Laskentaohjelma</p>
+      <ul id='sivut'>
+        <li>kotisivu</li>
+        <li>tietoja</li>
+      </ul>
+    </div>
     <h1>Laske rakentamisessa käytettävien materialien päästöt</h1>
 
     <div id="sisalto">
