@@ -1,0 +1,167 @@
+{
+    "Location": "FI",
+    "Culture": "en-gb",
+    "Version": "1.01.001",
+    "Publisher": "Syke, Finland",
+    "PublishDate": "2024-02-08T18:30:56.406Z",
+    "Resources": [
+      {
+        "ResourceId": 7000000995,
+        "ResourceType": "Material",
+        "ProductSystemId": 7,
+        "ProductSystemResourceId": "e6f92b8d-2d41-4739-a5e5-d314dfbda577",
+        "Name": "Aerated concrete, autoclaved block, non-reinforced, for exterior walls",
+        "StdName": "EN 771-4",
+        "StdDescription": "Specification for masonry units. Autoclaved aerated concrete masonry units",
+        "GeneralComment": "The main raw materials of aerated concrete are cement, lime, finely ground quartz sand, and water. The carbon footprint of the product depends on the shares of raw materials and the energy consumption in autoclave process. EPDs are available for autoclaved aerated concrete products manufactured in Estonia. The emission values published as EPDs for the Estonian aerated concrete blocks and elements are assessed to be representative data for the aerated concrete products used by the construction sector in Finland.",
+        "Synonyms": "-",
+        "TechnologyDescriptionAndIncludedProcesses": "",
+        "GeographicalRepresentativenessDescription": "Representative data for products purchased by the construction sector in Finland",
+        "UpdatedTime": "2023-06-29T21:53:56.706Z",
+        "InventoryUnit": "kg",
+        "ConservativeDataConversionFactor": 1.2,
+        "WasteFactor": 1.05,
+        "RefServiceLifeNormal": ">50 years",
+        "AnnualSupplyOrProductionVolume": "Autoclaved aerated concrete blocks and reinforced elements are not manufactured in Finland. Products are marketed for instance by Bauroc AS. Imports for instance from Estonia.",
+        "DataItems": {
+          "PropertyId": 1,
+          "PropertyName": "Global Warming Potential",
+          "PropertyUnitCode": "kg CO2e/kg",
+          "DataValueItems": [
+            {
+              "DataModuleCode": "A1-A3 Conservative",
+              "Value": 0.43
+            },
+            {
+              "DataModuleCode": "A1-A3 Typical",
+              "Value": 0.36
+            },
+            {
+              "DataModuleCode": "C3",
+              "Value": 0.006
+            },
+            {
+              "DataModuleCode": "D5",
+              "Value": -0.022
+            }
+          ]
+        },
+        "Conversions": [
+          {
+            "Field": "Volume",
+            "Unit": "m3",
+            "Value": 338
+          }
+        ],
+        "Material": {
+          "Renewables": "",
+          "Recycled": "",
+          "SVHC": "<0.1",
+          "End of life scenario": {
+            "Reuse": 0,
+            "Recycled": 92,
+            "Energy": 0,
+            "Final": 8,
+            "Hazardous": 0
+          },
+          "MaterialList": {
+            "concrete, brick, ceramic material, natural stone": "100 %"
+          }
+        },
+        "Names": {
+          "FI": "Kevytbetoni, höyrykarkaistu harkko, raudoittamaton ulkoseiniin",
+          "SV": "Lättbetong block för ytterväggar"
+        },
+        "Categories": [
+          {
+            "CategorySystem": "Base",
+            "Title": "Mineral materials and glass (excluding concrete)"
+          },
+          {
+            "ClassificationType": "Talo2000",
+            "Title": "213.7 Kevytbetoni"
+          }
+        ],
+        "Report": "Aerated concrete R01.02.pdf",
+        "ReportURL": "https://co2data.fi/rakentaminen/reports/Aerated concrete R01.02.pdf"
+      },
+      {
+        "ResourceId": 7000000996,
+        "ResourceType": "Material",
+        "ProductSystemId": 7,
+        "ProductSystemResourceId": "61a8448a-5006-4363-b2e1-38cb6da1df7a",
+        "Name": "Aerated concrete, autoclaved block, non-reinforced, for interior walls",
+        "StdName": "EN 771-4",
+        "StdDescription": "Specification for masonry units. Autoclaved aerated concrete masonry units",
+        "GeneralComment": "The main raw materials of aerated concrete are cement, lime, finely ground quartz sand, and water. The carbon footprint of the product depends on the shares of raw materials and the energy consumption in autoclave process. EPDs are available for autoclaved aerated concrete products manufactured in Estonia. The emission values published as EPDs for the Estonian aerated concrete blocks and elements are assessed to be representative data for the aerated concrete products used by the construction sector in Finland.",
+        "Synonyms": "-",
+        "TechnologyDescriptionAndIncludedProcesses": "",
+        "GeographicalRepresentativenessDescription": "Representative data for products purchased by the construction sector in Finland",
+        "UpdatedTime": "2023-06-29T21:53:56.706Z",
+        "InventoryUnit": "kg",
+        "ConservativeDataConversionFactor": 1.2,
+        "WasteFactor": 1.05,
+        "RefServiceLifeNormal": ">50 years",
+        "AnnualSupplyOrProductionVolume": "Autoclaved aerated concrete blocks and reinforced elements are not manufactured in Finland. Products are marketed for instance by Bauroc AS. Imports for instance from Estonia.",
+        "DataItems": {
+          "PropertyId": 1,
+          "PropertyName": "Global Warming Potential",
+          "PropertyUnitCode": "kg CO2e/kg",
+          "DataValueItems": [
+            {
+              "DataModuleCode": "A1-A3 Conservative",
+              "Value": 0.41
+            },
+            {
+              "DataModuleCode": "A1-A3 Typical",
+              "Value": 0.34
+            },
+            {
+              "DataModuleCode": "C3",
+              "Value": 0.006
+            },
+            {
+              "DataModuleCode": "D5",
+              "Value": -0.022
+            }
+          ]
+        },
+        "Conversions": [
+          {
+            "Field": "Volume",
+            "Unit": "m3",
+            "Value": 450
+          }
+        ],
+        "Material": {
+          "Renewables": "",
+          "Recycled": "",
+          "SVHC": "<0.1",
+          "End of life scenario": {
+            "Reuse": 0,
+            "Recycled": 92,
+            "Energy": 0,
+            "Final": 8,
+            "Hazardous": 0
+          },
+          "MaterialList": {
+            "concrete, brick, ceramic material, natural stone": "100 %"
+          }
+        },
+        "Names": {
+          "FI": "Kevytbetoni, höyrykarkaistu harkko, raudoittamaton sisäseiniin",
+          "SV": "Lättbetong block för innerväggar"
+        },
+        "Categories": [
+          {
+            "CategorySystem": "Base",
+            "Title": "Mineral materials and glass (excluding concrete)"
+          },
+          {
+            "ClassificationType": "Talo2000",
+            "Title": "213.7 Kevytbetoni"
+          }
+        ],
+        "Report": "Aerated concrete R01.02.pdf",
+        "ReportURL": "https://co2data.fi/rakentaminen/reports/Aerated concrete R01.02.pdf"
+      }]}
