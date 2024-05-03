@@ -1,24 +1,49 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 //import Fetch from '../src/Fetch'
 //import './testi.json';
-//hae tiedot co2 sivustolta api callin avulla
 
-const Tiedot = () => {
-  let osoite = '../src/testi.json'
 
-  let jsondata;    
+//hae tiedot testi.json tiedostosta
 
-  async function getData(url) {
-    const response = await fetch(url);
-  
-    return response.json();
+const Tiedot = (props) => {
+
+  useEffect(() => {
+    fetch('../src/testi.json')
+      .then(response => response.json())
+      .then(tied => {
+        props.tila(tied);
+       })
+       .catch((err) => {
+          return (err.message)
+       });
+
+ }, []);
+}
+
+const Mater = (props) => {
+  let data = props.data
+
+  if (data != null) {
+    const listaMater = data.Resources.map((d) => <option key={d.Resources}>{d.Names.FI}</option>);
+    return (
+      <form id='sisalto'>
+        <label htmlFor='materiaalit'>materiaali:</label>
+        <select>{listaMater}</select>
+        <label htmlFor='numero'>neliöitä:</label>
+        <input id='numero' name='numero' type='number' label='numero' required/>
+        <button>lisää</button>
+      </form>
+  )
   }
-  
-  const data = getData(osoite);
-  const mat = {data}
-  console.log(mat)
+  return (
+    <div>
+      lataa...
+    </div>
+  )
 
 }
+
+
 
 //materiaali vaihtoehdot
 const Materiaalit = (props) => {
@@ -35,7 +60,7 @@ const Materiaalit = (props) => {
                     'hinta' : 5}
 
   
-  var lista = props.lista
+  let lista = props.lista
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -105,6 +130,11 @@ const App = () => {
 
   const [lista, setLista] = useState([])
  
+  const [data, setData] = useState(null);
+
+  if (data != null) {
+    console.log(data.Resources[0])
+  }
 
   return (
   <div id="body">
@@ -117,8 +147,8 @@ const App = () => {
     </div>
     <h1>Laske rakentamisessa käytettävien materialien päästöt</h1>
 
-    <div id="sisalto">
-      <Materiaalit lista={lista} tila={setLista}/>
+    <div id='sisalto'>
+      <Mater data={data}/>
     </div>
 
     <div>
@@ -130,8 +160,9 @@ const App = () => {
     </div>
 
     <div>
-      <Tiedot/>
+      <Tiedot data={data} tila={setData}/>
     </div>
+
   </div>
   )
 }
