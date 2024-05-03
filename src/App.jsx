@@ -23,15 +23,34 @@ const Tiedot = (props) => {
 const Mater = (props) => {
   let data = props.data
 
+  let lista = props.lista
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    
+    //lisää materiaali listaan
+
+    props.tila([
+      ...lista,
+      {'materiaali' : document.getElementById('materiaalit').value.split('co2')[0] ,
+      'maara' : document.getElementById('numero').value ,
+      'co2' : document.getElementById('materiaalit').value.split(':')[1]}
+    ]);
+
+    document.getElementById('materiaalit').value = '';
+    document.getElementById('numero').value = '';
+
+  }
+
   if (data != null) {
-    const listaMater = data.Resources.map((d) => <option key={d.Resources}>{d.Names.FI}</option>);
+    const listaMater = data.Resources.map((d) => <option key={d.Resources}>{d.Names.FI} co2/m2:{d.ConservativeDataConversionFactor * d.DataItems.DataValueItems[0].Value}</option>);
     return (
       <form id='sisalto'>
         <label htmlFor='materiaalit'>materiaali:</label>
-        <select>{listaMater}</select>
+        <select name='materiaalit' label='materiaali:' id='materiaalit'>{listaMater}</select>
         <label htmlFor='numero'>neliöitä:</label>
         <input id='numero' name='numero' type='number' label='numero' required/>
-        <button>lisää</button>
+        <button onClick={onSubmit}>lisää</button>
       </form>
   )
   }
@@ -43,66 +62,13 @@ const Mater = (props) => {
 
 }
 
-
-
-//materiaali vaihtoehdot
-const Materiaalit = (props) => {
-
-  var lastulevy = {'materiaali' : 'LASTULEVY 11 P1 11X1200X2600 MM POHJAMAALATTU 3,12 M²',
-                      'hinta': 50}
-  var kestopuu = {'materiaali' : 'KESTOPUU HÖYLÄTTY RAW AB 28X120 MM RUSKEA VIISTETTY',
-                    'hinta' : 40}
-  var verkkomatto = {'materiaali' : 'Verkkomatto Conlit Firemat EI30 50 mm 4,5 m²',
-                    'hinta' : 30}
-  var levy = {'materiaali' : 'Palosuojalevy Conlit 150 P 30 mm 2,40 m²',
-                    'hinta' : 20}
-  var ruuvi = {'materiaali' : 'Jousiruuvi XFS 001 Paroc 40/20 mm 500 kpl',
-                    'hinta' : 5}
-
-  
-  let lista = props.lista
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    
-    //lisää materiaali listaan
-
-    props.tila([
-      ...lista,
-      {'materiaali' : document.getElementById('materiaalit').value ,
-      'maara' : document.getElementById('numero').value}
-    ]);
-
-    document.getElementById('materiaalit').value = '';
-    document.getElementById('numero').value = '';
-
-  }
-
-  return (
-      <form id='sisalto'>
-          <label htmlFor='materiaalit'>materiaali:</label>
-          <select name='materiaalit' label='materiaali:' id='materiaalit'>
-              <option>{lastulevy['materiaali']}</option>
-              <option>{kestopuu['materiaali']}</option>
-              <option>{verkkomatto['materiaali']}</option>
-              <option>{levy['materiaali']}</option>
-              <option>{ruuvi['materiaali']}</option>
-            </select>
-            <label htmlFor='numero'>neliöitä:</label>
-            <input id='numero' name='numero' type='number' label='numero' required/>
-            <button onClick={onSubmit}>Lisää</button>
-        </form>
-  )
-}
-  
-
 //kaikki lisätyt materiaalit
 const Lisatut = (props) => {
 
   let lista = props.lista
 
   if (lista.length > 0){
-    const listItems = lista.map((d) => <li key={d.materiaali}>{d.materiaali}       neliöitä: {d.maara}</li>);
+    const listItems = lista.map((d) => <li key={d.materiaali}>{d.materiaali}       neliöitä: {d.maara}   co2 yht: {(d.maara*d.co2)}</li>);
     return (
       <div>
         <p>{listItems}</p>
@@ -132,9 +98,7 @@ const App = () => {
  
   const [data, setData] = useState(null);
 
-  if (data != null) {
-    console.log(data.Resources[0])
-  }
+  console.log(lista)
 
   return (
   <div id="body">
@@ -148,7 +112,7 @@ const App = () => {
     <h1>Laske rakentamisessa käytettävien materialien päästöt</h1>
 
     <div id='sisalto'>
-      <Mater data={data}/>
+      <Mater data={data} lista={lista} tila={setLista}/>
     </div>
 
     <div>
