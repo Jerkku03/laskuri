@@ -39,8 +39,18 @@ ul {
 #sisalto {
   display: flex;
   gap: 5px;
+  height: 40px;
+}
+
+#matKork {
+  height: 40px;
 }
 
 h1 {
   color: rgb(34, 40, 40);
+}
+
+td{
+  border: 1px solid;
+  padding: 10px;
 }
