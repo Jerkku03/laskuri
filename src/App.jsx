@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import MateriaaliHaku from './components/MateriaaliHaku'
 import LisatutMateriaalit from './components/LisatutMateriaalit';
+import Export from './components/Pdf';
 //import Fetch from '../src/Fetch'
 //import './testi.json';
 
@@ -58,12 +59,9 @@ const App = () => {
     </div>
 
     <div>
-      <LisatutMateriaalit lista={lista}/>
+      <Export lista={lista}/>
     </div>
-
-    <div>
-      <Tulosta/>
-    </div>
+    
 
     <div>
       <Tiedot data={data} tila={setData}/>
