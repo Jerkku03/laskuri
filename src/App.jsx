@@ -23,15 +23,6 @@ const Tiedot = (props) => {
  }, []);
 }
 
-//tallentaa pdf tiedoston materiaaleista
-const Tulosta = () => {
-  return (
-    <button>Tallenna PDF</button>
-  )
-}
-
-
-
 const App = () => {
 
   const [lista, setLista] = useState([])
@@ -43,18 +34,26 @@ const App = () => {
   console.log(lista)
 
   return (
-  <div id="body">
+  <>
     <div id='header'>
       <p id='logo'>Laskentaohjelma</p>
       <ul id='sivut'>
-        <li>kotisivu</li>
-        <li>tietoja</li>
+        <li></li>
+        <li></li>
       </ul>
     </div>
+  <div id="body">
     <h1>Laske rakentamisessa käytettävien materialien päästöt</h1>
+    <p> Kirjoita Hae Materiaalia kohtaan materiaalin nimi. <br />
+        tämän jälkeen klikkaa valitse materiaali, etsi valikosta materiaali ja klikkaa sitä. <br />
+        lisää neliöt kohtaan neliöitä, jossa käytit materiaalia <br />
+        Klikkaa lisää nappia <br />
+        Toista prosessi kunnes olet lisännyt kaikki haluamasi materiaalit. <br />
+        Lopuksi klikkaa nappia Tallenna PDF, niin laskelma tallentuu tietokoneellesi.
+    </p>
 
     <div>
-      hae materiaalia: <input id='matKork' value={haku} onChange={(e) => setHaku(e.target.value)}/>
+      <p>hae materiaalia:<input id='matKork' value={haku} onChange={(e) => setHaku(e.target.value)}/> </p>
       <MateriaaliHaku data={data} lista={lista} tila={setLista} haku={haku}/>
     </div>
 
@@ -62,12 +61,12 @@ const App = () => {
       <Export lista={lista}/>
     </div>
     
-
     <div>
       <Tiedot data={data} tila={setData}/>
     </div>
 
   </div>
+  </>
   )
 }
 

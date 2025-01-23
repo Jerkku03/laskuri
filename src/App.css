@@ -2,6 +2,7 @@
 #body {
   height: 100vh;
   margin: 0;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   
@@ -39,7 +40,6 @@ ul {
 #sisalto {
   display: flex;
   gap: 5px;
-  height: 40px;
 }
 
 #matKork {

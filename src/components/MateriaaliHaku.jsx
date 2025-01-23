@@ -26,11 +26,18 @@ const MateriaaliHaku = (props) => {
       const listaMater = data.Resources.filter((d) => d.Names.FI.toLowerCase().includes(props.haku)).map((d) => <option key={d.Resources}>{d.Names.FI} co2/m2:{d.ConservativeDataConversionFactor * d.DataItems.DataValueItems[0].Value}</option>);
       return (
           <form id='sisalto'>
-            <label htmlFor='materiaalit'>materiaali:</label>
-            <select name='materiaalit' label='materiaali:' id='materiaalit'>{listaMater}</select>
-            <label htmlFor='numero'>neliöitä:</label>
-            <input id='numero' name='numero' type='number' label='numero' required/>
-            <button onClick={onSubmit}>lisää</button>
+            <div>
+              <div>
+                <label htmlFor='materiaalit'>valitse materiaali:</label>
+                <select name='materiaalit' label='materiaali:' id='materiaalit'>{listaMater}</select>
+              </div>
+              <br />
+              <div>
+                <label htmlFor='numero'>neliöitä:</label>
+                <input id='numero' name='numero' type='number' label='numero' required/>
+                <button onClick={onSubmit}>lisää</button>
+              </div>
+            </div>
           </form>
     )
     }
