@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react'
 import MateriaaliHaku from './components/MateriaaliHaku'
 import LisatutMateriaalit from './components/LisatutMateriaalit';
 import Export from './components/Pdf';
+import ErrorNotification from './components/ErrorNotification';
+import SuccessNotification from './components/SucceessNotification';
+import Login from './components/Login';
+
 //import Fetch from '../src/Fetch'
 //import './testi.json';
 
@@ -31,7 +35,20 @@ const App = () => {
 
   const [haku, setHaku] = useState('')
 
-  console.log(lista)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [successMessage, setSuccessMessage] = useState(null)
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+    }
+  }, [])
+
 
   return (
   <>
@@ -42,7 +59,11 @@ const App = () => {
         <li></li>
       </ul>
     </div>
-  <div id="body">
+    <ErrorNotification message={errorMessage} />
+    <SuccessNotification message={successMessage} />
+    {!user && <Login username={username} password={password} setUsername={setUsername} setPassword={setPassword} user={user} setUser={setUser} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
+    {user &&  <button onClick={() => {window.localStorage.removeItem('loggedNoteappUser')}}>logout</button>}
+   {user && <div id="body">
     <h1>Laske rakentamisessa käytettävien materialien päästöt</h1>
     <p> Kirjoita Hae Materiaalia kohtaan materiaalin nimi. <br />
         tämän jälkeen klikkaa valitse materiaali, etsi valikosta materiaali ja klikkaa sitä. <br />
@@ -64,8 +85,8 @@ const App = () => {
     <div>
       <Tiedot data={data} tila={setData}/>
     </div>
-
-  </div>
+  </div>}
+  
   </>
   )
 }
