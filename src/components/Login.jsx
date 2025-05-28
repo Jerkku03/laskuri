@@ -26,7 +26,7 @@ const Login = ({ username, setUsername, password, setPassword, setUser, setError
 
   return (
     <>
-      <h2>Login</h2>
+      <h2>Kirjaudu</h2>
       <form onSubmit={handleLogin}>
         <div>
           username

@@ -6,7 +6,7 @@ import ErrorNotification from './components/ErrorNotification';
 import SuccessNotification from './components/SucceessNotification';
 import Login from './components/Login';
 
-//import Fetch from '../src/Fetch'
+import Fetch from './services/Fetch'
 //import './testi.json';
 
 
@@ -62,7 +62,7 @@ const App = () => {
     <ErrorNotification message={errorMessage} />
     <SuccessNotification message={successMessage} />
     {!user && <Login username={username} password={password} setUsername={setUsername} setPassword={setPassword} user={user} setUser={setUser} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
-    {user &&  <button onClick={() => {window.localStorage.removeItem('loggedNoteappUser')}}>logout</button>}
+    {user &&  <button onClick={() => {window.localStorage.removeItem('loggedNoteappUser')}}>kirjaudu ulos</button>}
    {user && <div id="body">
     <h1>Laske rakentamisessa käytettävien materialien päästöt</h1>
     <p> Kirjoita Hae Materiaalia kohtaan materiaalin nimi. <br />
@@ -83,8 +83,9 @@ const App = () => {
     </div>
     
     <div>
-      <Tiedot data={data} tila={setData}/>
+      
     </div>
+    <Fetch setData={setData}></Fetch>
   </div>}
   
   </>

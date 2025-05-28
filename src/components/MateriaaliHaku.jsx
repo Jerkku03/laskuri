@@ -9,6 +9,10 @@ const MateriaaliHaku = (props) => {
       e.preventDefault();
       
       //lisää materiaali listaan
+      if (document.getElementById('numero').value == 0) {
+        alert('lisää neliömäärä')
+        return
+      }
   
       props.tila([
         ...lista,
