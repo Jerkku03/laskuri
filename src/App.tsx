@@ -12,8 +12,8 @@ import {
 } from "react-router"
 import Login from './components/Login';
 import FrontPage from './components/FrontPage';
-import NewUser from './pages/NewUser';
-import Projects from './privatePages/projects';
+import NewUser from './pages/NewUserPage';
+import ProjectsPage from './privatePages/ProjectsPage';
 import PrivateNavBar from './components/PrivateNavBar'
 
 const App = () => {
@@ -54,8 +54,8 @@ const App = () => {
     
     {user &&  
     <Routes>
-      <Route path='/projektit' element={<Projects/>}></Route>
-      <Route path='/*' element={<Projects/>}></Route>
+      <Route path='/projektit' element={<ProjectsPage/>}></Route>
+      <Route path='/*' element={<ProjectsPage/>}></Route>
     </Routes>
     }
   </>
