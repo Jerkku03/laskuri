@@ -8,12 +8,25 @@
   
 }
 
-#header {
+.text {
+  color: rgba(239, 229, 52, 1);
+  text-decoration: none;
+  padding: 5px;
+}
+
+.header {
   background-color:#1f2937;
   display: flex;
-  justify-content: space-between;   
-  padding: 16px;
+  justify-content: flex-end;   
+  padding: 11px;
   margin: 0;
+}
+
+.FirstHeader {
+  color: black;
+  font-size: large;
+  font-weight: bold;
+  padding: 10px;
 }
 
 #logo {

@@ -1,7 +1,13 @@
+import React from 'react'
+import {useState} from 'react'
 import loginService from '../services/login'
 import PropTypes from 'prop-types'
 
-const Login = ({ username, setUsername, password, setPassword, setUser, setErrorMessage }) => {
+const Login = ({setUser, setErrorMessage}) => {
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
   const handleLogin = async (event) => {
     event.preventDefault()
     console.log('logging in with', username, password)

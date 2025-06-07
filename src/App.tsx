@@ -1,49 +1,26 @@
+import React from 'react';
 import { useState, useEffect } from 'react'
-import MateriaaliHaku from './components/MateriaaliHaku'
-import LisatutMateriaalit from './components/LisatutMateriaalit';
-import Export from './components/Pdf';
 import ErrorNotification from './components/ErrorNotification';
 import SuccessNotification from './components/SucceessNotification';
-import Login from './components/Login';
-import Fetch from './services/Fetch';
-
+import Navbar from './components/Navbar';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link,
   Navigate,
-  useNavigate,
-  useMatch,
-  useParams
 } from "react-router"
-
-const Menu = () => {
-  const padding = {
-    paddingRight: 5
-  }
-  return (
-    <header>
-      <Link style={padding} to='/etusivu'>etusivu</Link>
-      <Link style={padding} to='/lisatietoja'>lisätietoja</Link>
-      <Link style={padding} to='/kirjaudu'>kirjaudu</Link>
-    </header>
-  )
-}
+import Login from './components/Login';
+import FrontPage from './components/FrontPage';
+import NewUser from './pages/NewUser';
+import Projects from './privatePages/projects';
+import PrivateNavBar from './components/PrivateNavBar'
 
 const App = () => {
-
-  const [lista, setLista] = useState([])
- 
-  const [data, setData] = useState(null);
-
-  const [haku, setHaku] = useState('')
-
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
+
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
@@ -59,14 +36,28 @@ const App = () => {
     <ErrorNotification message={errorMessage} />
     <SuccessNotification message={successMessage} />
 
-    <Menu />
-    {!user && <Login username={username} password={password} setUsername={setUsername} setPassword={setPassword} user={user} setUser={setUser} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
-    {user &&  <button onClick={() => {window.localStorage.removeItem('loggedNoteappUser')}}>kirjaudu ulos</button>}
-
+    {!user && 
+    <Navbar Link={Link}/>
+    }
+    {!user && 
     <Routes>
-      <Route path="/projects" element={user ? <Projects /> : <Navigate replace to="/login" />} />
-      <Route path='/login'></Route>
+      <Route path='/uusi' element={<NewUser/>}></Route>
+      <Route path='/kirjaudu' element={<Login setUser={setUser} setErrorMessage={setErrorMessage}/>}/>
+      <Route path='/*' element={<FrontPage/>}></Route>
+      <Route path='/etusivu' element={<FrontPage/>}></Route>
     </Routes>
+     }
+
+    {user && 
+    <PrivateNavBar Link={Link}/>
+    }
+    
+    {user &&  
+    <Routes>
+      <Route path='/projektit' element={<Projects/>}></Route>
+      <Route path='/*' element={<Projects/>}></Route>
+    </Routes>
+    }
   </>
   )
 }

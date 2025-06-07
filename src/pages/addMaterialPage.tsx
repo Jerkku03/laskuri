@@ -30,3 +30,5 @@ const addMaterialPage = () => {
   </>
     )
 }
+
+export default addMaterialPage
