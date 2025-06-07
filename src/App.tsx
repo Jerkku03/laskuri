@@ -5,26 +5,30 @@ import Export from './components/Pdf';
 import ErrorNotification from './components/ErrorNotification';
 import SuccessNotification from './components/SucceessNotification';
 import Login from './components/Login';
+import Fetch from './services/Fetch';
 
-import Fetch from './services/Fetch'
-//import './testi.json';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+  useNavigate,
+  useMatch,
+  useParams
+} from "react-router"
 
-
-//hae tiedot testi.json tiedostosta
-
-const Tiedot = (props) => {
-
-  useEffect(() => {
-    fetch('../src/testi.json')
-      .then(response => response.json())
-      .then(tied => {
-        props.tila(tied);
-       })
-       .catch((err) => {
-          return (err.message)
-       });
-
- }, []);
+const Menu = () => {
+  const padding = {
+    paddingRight: 5
+  }
+  return (
+    <header>
+      <Link style={padding} to='/etusivu'>etusivu</Link>
+      <Link style={padding} to='/lisatietoja'>lisätietoja</Link>
+      <Link style={padding} to='/kirjaudu'>kirjaudu</Link>
+    </header>
+  )
 }
 
 const App = () => {
@@ -52,42 +56,17 @@ const App = () => {
 
   return (
   <>
-    <div id='header'>
-      <p id='logo'>Laskentaohjelma</p>
-      <ul id='sivut'>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
     <ErrorNotification message={errorMessage} />
     <SuccessNotification message={successMessage} />
+
+    <Menu />
     {!user && <Login username={username} password={password} setUsername={setUsername} setPassword={setPassword} user={user} setUser={setUser} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
     {user &&  <button onClick={() => {window.localStorage.removeItem('loggedNoteappUser')}}>kirjaudu ulos</button>}
-   {user && <div id="body">
-    <h1>Laske rakentamisessa käytettävien materialien päästöt</h1>
-    <p> Kirjoita Hae Materiaalia kohtaan materiaalin nimi. <br />
-        tämän jälkeen klikkaa valitse materiaali, etsi valikosta materiaali ja klikkaa sitä. <br />
-        lisää neliöt kohtaan neliöitä, jossa käytit materiaalia <br />
-        Klikkaa lisää nappia <br />
-        Toista prosessi kunnes olet lisännyt kaikki haluamasi materiaalit. <br />
-        Lopuksi klikkaa nappia Tallenna PDF, niin laskelma tallentuu tietokoneellesi.
-    </p>
 
-    <div>
-      <p>hae materiaalia:<input id='matKork' value={haku} onChange={(e) => setHaku(e.target.value)}/> </p>
-      <MateriaaliHaku data={data} lista={lista} tila={setLista} haku={haku}/>
-    </div>
-
-    <div>
-      <Export lista={lista}/>
-    </div>
-    
-    <div>
-      
-    </div>
-    <Fetch setData={setData}></Fetch>
-  </div>}
-  
+    <Routes>
+      <Route path="/projects" element={user ? <Projects /> : <Navigate replace to="/login" />} />
+      <Route path='/login'></Route>
+    </Routes>
   </>
   )
 }
