@@ -17,7 +17,7 @@ const Projects = () => {
 
     return (
         <>
-            {projects[0].name}
+            {projects.map(project => <div>{project.projectName}</div>)}
         </>
     )
 }

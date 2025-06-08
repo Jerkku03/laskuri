@@ -5,7 +5,9 @@ const ProjectsPage = () => {
     return (
         <>
         <Projects/>
-        <button>näytä projektit</button>
+        <div>
+        <button type='button' onClick={() => {window.location.href='/uusi_projekti'}}>uusi projekti</button>
+        </div>
         </>
     )
 }

@@ -10,11 +10,13 @@ import {
   Link,
   Navigate,
 } from "react-router"
-import Login from './components/Login';
-import FrontPage from './components/FrontPage';
-import NewUser from './pages/NewUserPage';
+import LoginPage from './pages/LoginPage';
+import FrontPage from './pages/FrontPage';
+import NewUserPage from './pages/NewUserPage';
 import ProjectsPage from './privatePages/ProjectsPage';
-import PrivateNavBar from './components/PrivateNavBar'
+import PrivateNavBar from './components/PrivateNavBar';
+import NewProjectPage from './privatePages/NewProjectPage';
+import projectService from './services/project';
 
 const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
@@ -27,6 +29,7 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
+      projectService.setToken(user.token)
     }
   }, [])
 
@@ -41,8 +44,8 @@ const App = () => {
     }
     {!user && 
     <Routes>
-      <Route path='/uusi' element={<NewUser/>}></Route>
-      <Route path='/kirjaudu' element={<Login setUser={setUser} setErrorMessage={setErrorMessage}/>}/>
+      <Route path='/uusi' element={<NewUserPage setUser={setUser} setErrorMessage={setErrorMessage}/>}></Route>
+      <Route path='/kirjaudu' element={<LoginPage setUser={setUser} setErrorMessage={setErrorMessage}/>}/>
       <Route path='/*' element={<FrontPage/>}></Route>
       <Route path='/etusivu' element={<FrontPage/>}></Route>
     </Routes>
@@ -56,6 +59,7 @@ const App = () => {
     <Routes>
       <Route path='/projektit' element={<ProjectsPage/>}></Route>
       <Route path='/*' element={<ProjectsPage/>}></Route>
+      <Route path='/uusi_projekti' element={<NewProjectPage setErrorMessage={setErrorMessage}/>}></Route>
     </Routes>
     }
   </>

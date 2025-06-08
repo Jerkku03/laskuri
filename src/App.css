@@ -5,11 +5,12 @@
   padding: 5px;
   display: flex;
   flex-direction: column;
+  color: rgba(239, 229, 52, 1);
   
 }
 
 .text {
-  color: rgba(239, 229, 52, 1);
+  color: white;
   text-decoration: none;
   padding: 5px;
 }
