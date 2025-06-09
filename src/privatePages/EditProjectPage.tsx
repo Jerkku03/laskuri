@@ -48,7 +48,7 @@ const EditProjectPage = () => {
             </div>
             <Fetch setData={setData}></Fetch>
             <div>
-                  <Export lista={lista}/>
+                  <Export lista={lista} id={id} projectName={project.projectName} setLista={setLista}/>
             </div>
             </>}
             <button onClick={() => {onNewMaterial()}}>new material</button>

@@ -11,17 +11,21 @@ const MateriaaliHaku = ({data, lista, haku, setLista, projectName, id}) => {
         alert('lisää neliömäärä')
         return
       }
+
+      const materialId = Math.random().toString(16).slice(2)
   
       setLista([
         ...lista,
-        {'materiaali' : document.getElementById('materiaalit').value.split('co2')[0] ,
+        {'id': materialId,
+        'materiaali' : document.getElementById('materiaalit').value.split('co2')[0] ,
         'maara' : document.getElementById('numero').value ,
         'co2' : document.getElementById('materiaalit').value.split(':')[1]}
       ]);
 
       projectService.update(id, {projectName: projectName, materials:[
         ...lista,
-        {'materiaali' : document.getElementById('materiaalit').value.split('co2')[0] ,
+        {'id': materialId,
+        'materiaali' : document.getElementById('materiaalit').value.split('co2')[0] ,
         'maara' : document.getElementById('numero').value ,
         'co2' : document.getElementById('materiaalit').value.split(':')[1]}
       ]  })
