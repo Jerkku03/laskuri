@@ -9,6 +9,7 @@ const NewProjectPage = ({setErrorMessage}) => {
         event.preventDefault()
         try {
           projectService.create({projectName})
+          window.location.href='./projektit'
         } catch (exception) {
           setErrorMessage('error')
         }

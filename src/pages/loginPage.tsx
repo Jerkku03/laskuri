@@ -4,10 +4,15 @@ import loginService from '../services/login'
 import PropTypes from 'prop-types'
 import projectService from '../services/project'
 
-const Login = ({setUser, setErrorMessage}) => {
+import { useDispatch } from 'react-redux'
+import { addUser } from '../redux/slices/userSlice';
+
+const Login = ({setErrorMessage}) => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
+  const dispatch = useDispatch()
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -21,7 +26,9 @@ const Login = ({setUser, setErrorMessage}) => {
         'loggedNoteappUser', JSON.stringify(user)
       )
       projectService.setToken(user.token)
-      setUser(user)
+
+      dispatch(addUser(user))
+
       setUsername('')
       setPassword('')
     } catch (exception) {

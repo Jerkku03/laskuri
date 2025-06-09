@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {useState} from 'react'
 import projectService from '../services/project'
 import PropTypes from 'prop-types'
+import Project from './Project'
 
 const Projects = () => {
 
@@ -17,7 +18,7 @@ const Projects = () => {
 
     return (
         <>
-            {projects.map(project => <div>{project.projectName}</div>)}
+            {projects.map(project => <Project project={project}/>)}
         </>
     )
 }

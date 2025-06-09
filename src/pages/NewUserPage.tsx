@@ -3,12 +3,19 @@ import {useState} from 'react'
 import newUserService from '../services/newUser'
 import PropTypes from 'prop-types'
 
-const NewUserPage = ({setUser, setErrorMessage}) => {
+import { useDispatch, useSelector } from 'react-redux'
+import { addUser } from '../redux/slices/userSlice';
+
+
+const NewUserPage = ({setErrorMessage}) => {
 
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordAgain, setPasswordAgain] = useState('')
+
+
+  const dispatch = useDispatch()
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -27,7 +34,8 @@ const NewUserPage = ({setUser, setErrorMessage}) => {
       window.localStorage.setItem(
         'loggedNoteappUser', JSON.stringify(user)
       )
-      setUser(user)
+      dispatch(addUser(user))
+
       setUsername('')
       setPassword('')
     } catch (exception) {

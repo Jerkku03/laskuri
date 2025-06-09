@@ -17,21 +17,27 @@ import ProjectsPage from './privatePages/ProjectsPage';
 import PrivateNavBar from './components/PrivateNavBar';
 import NewProjectPage from './privatePages/NewProjectPage';
 import projectService from './services/project';
+import EditProjectPage from './privatePages/EditProjectPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser } from './redux/slices/userSlice';
 
 const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
 
-  const [user, setUser] = useState(null)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      setUser(user)
+      dispatch(addUser(user))
       projectService.setToken(user.token)
     }
   }, [])
+
+  const user = useSelector((state) => state.user.user)
+      console.log(user)
 
 
   return (
@@ -44,8 +50,8 @@ const App = () => {
     }
     {!user && 
     <Routes>
-      <Route path='/uusi' element={<NewUserPage setUser={setUser} setErrorMessage={setErrorMessage}/>}></Route>
-      <Route path='/kirjaudu' element={<LoginPage setUser={setUser} setErrorMessage={setErrorMessage}/>}/>
+      <Route path='/uusi' element={<NewUserPage setErrorMessage={setErrorMessage}/>}></Route>
+      <Route path='/kirjaudu' element={<LoginPage setErrorMessage={setErrorMessage}/>}/>
       <Route path='/*' element={<FrontPage/>}></Route>
       <Route path='/etusivu' element={<FrontPage/>}></Route>
     </Routes>
@@ -60,6 +66,7 @@ const App = () => {
       <Route path='/projektit' element={<ProjectsPage/>}></Route>
       <Route path='/*' element={<ProjectsPage/>}></Route>
       <Route path='/uusi_projekti' element={<NewProjectPage setErrorMessage={setErrorMessage}/>}></Route>
+      <Route path='/projekti/:id' element={<EditProjectPage />}></Route>
     </Routes>
     }
   </>
