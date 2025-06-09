@@ -25,6 +25,8 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
 
+  const user = useSelector((state) => state.user.user)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -35,10 +37,6 @@ const App = () => {
       projectService.setToken(user.token)
     }
   }, [])
-
-  const user = useSelector((state) => state.user.user)
-      console.log(user)
-
 
   return (
   <>
