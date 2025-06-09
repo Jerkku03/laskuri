@@ -1,17 +1,19 @@
 import React from "react";
+import { useState } from "react";
+import MateriaaliHaku from "../components/MateriaaliHaku";
+import Fetch from "../services/Fetch";
+import Export from "../components/Pdf";
 
-const addMaterialPage = () => {
+const AddMaterialPage = () => {
+
+  const [haku, setHaku] = useState('')
+  const [data, setData] = useState(null)
+
+  const [lista, setLista] = useState([])
+
     return (
         <>
-        {user && <div id="body">
-    <h1>Laske rakentamisessa käytettävien materialien päästöt</h1>
-    <p> Kirjoita Hae Materiaalia kohtaan materiaalin nimi. <br />
-        tämän jälkeen klikkaa valitse materiaali, etsi valikosta materiaali ja klikkaa sitä. <br />
-        lisää neliöt kohtaan neliöitä, jossa käytit materiaalia <br />
-        Klikkaa lisää nappia <br />
-        Toista prosessi kunnes olet lisännyt kaikki haluamasi materiaalit. <br />
-        Lopuksi klikkaa nappia Tallenna PDF, niin laskelma tallentuu tietokoneellesi.
-    </p>
+        <div id="body">
 
     <div>
       <p>hae materiaalia:<input id='matKork' value={haku} onChange={(e) => setHaku(e.target.value)}/> </p>
@@ -25,10 +27,10 @@ const addMaterialPage = () => {
     <div>
       
     </div>
-    <Fetch setData={setData}></Fetch>
-  </div>}
+      <Fetch setData={setData}></Fetch>
+    </div>
   </>
     )
 }
 
-export default addMaterialPage
+export default AddMaterialPage

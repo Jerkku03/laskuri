@@ -28,4 +28,10 @@ const remove = async id => {
   return response.data
 }
 
-export default { create, setToken, remove , getProject}
+const update = async (id, newObject) => {
+  const response = await axios.put(`${ baseUrl }/${id}`, newObject)
+  return response.data
+}
+
+
+export default { create, setToken, remove , getProject, update}
