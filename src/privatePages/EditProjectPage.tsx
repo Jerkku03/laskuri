@@ -2,27 +2,32 @@ import React from "react";
 import projectService from '../services/project'
 import {useSelector} from "react-redux";
 import { useState, useEffect } from "react";
-import AddMaterialPage from "./addMaterialPage";
+import Export from "../components/Pdf";
+import Fetch from "../services/Fetch";
+import MateriaaliHaku from "../components/MateriaaliHaku";
 
 const EditProjectPage = () => {
 
     const [project, setProject] = useState(null)
+    const [lista, setLista] = useState(null)
+    const [haku, setHaku] = useState('')
+    const [data, setData] = useState(null)
 
     const currentUrl = window.location.href
     const id = currentUrl.split('/')[4]
 
     useEffect(() => {
-            projectService.getProject(id).then(project => 
+            projectService.getProject(id).then(project => {
                 setProject(project)
+                setLista(project.materials)
+            }
             )
         }, [])
     //console.log(project.materials)
     const onNewMaterial = () => {
-        projectService.update(id, {projectName: project.projectName, materials: {3: 'kivi', 4: 'puu'} })
+        
     }
 
-
-    console.log(project)
     return (
         <div>
             {!project && <div>lataa...</div>}
@@ -37,12 +42,16 @@ const EditProjectPage = () => {
         Lopuksi klikkaa nappia Tallenna PDF, niin laskelma tallentuu tietokoneellesi.
     </p>
             <h2>{project.projectName}</h2>
-
-            <div>{project.materials[3]}</div>
+            <div>
+                <p>hae materiaalia:<input id='matKork' value={haku} onChange={(e) => setHaku(e.target.value)}/> </p>
+                <MateriaaliHaku data={data} lista={lista} setLista={setLista} haku={haku} projectName={project.projectName} id={id}/>
+            </div>
+            <Fetch setData={setData}></Fetch>
+            <div>
+                  <Export lista={lista}/>
+            </div>
             </>}
             <button onClick={() => {onNewMaterial()}}>new material</button>
-
-            <AddMaterialPage/>
 
         </div>
     )

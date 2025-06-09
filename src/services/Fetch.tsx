@@ -11,7 +11,6 @@ const Fetch = ({setData}) => {
             .get(BASE_URL2)
             .then(response => {
             const notes = response
-            console.log(notes.data)
             setData(notes.data)
           });
     

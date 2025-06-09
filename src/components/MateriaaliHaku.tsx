@@ -1,9 +1,7 @@
 import React from "react";
+import projectService from '../services/project'
 
-const MateriaaliHaku = (props) => {
-    let data = props.data
-  
-    let lista = props.lista
+const MateriaaliHaku = ({data, lista, haku, setLista, projectName, id}) => {
   
     const onSubmit = (e) => {
       e.preventDefault();
@@ -14,12 +12,19 @@ const MateriaaliHaku = (props) => {
         return
       }
   
-      props.tila([
+      setLista([
         ...lista,
         {'materiaali' : document.getElementById('materiaalit').value.split('co2')[0] ,
         'maara' : document.getElementById('numero').value ,
         'co2' : document.getElementById('materiaalit').value.split(':')[1]}
       ]);
+
+      projectService.update(id, {projectName: projectName, materials:[
+        ...lista,
+        {'materiaali' : document.getElementById('materiaalit').value.split('co2')[0] ,
+        'maara' : document.getElementById('numero').value ,
+        'co2' : document.getElementById('materiaalit').value.split(':')[1]}
+      ]  })
   
       document.getElementById('materiaalit').value = '';
       document.getElementById('numero').value = '';
@@ -27,7 +32,7 @@ const MateriaaliHaku = (props) => {
     }
   
     if (data != null) {
-      const listaMater = data.Resources.filter((d) => d.Names.FI.toLowerCase().includes(props.haku)).map((d) => <option key={d.Resources}>{d.Names.FI} co2/m2:{d.ConservativeDataConversionFactor * d.DataItems.DataValueItems[0].Value}</option>);
+      const listaMater = data.Resources.filter((d) => d.Names.FI.toLowerCase().includes(haku)).map((d) => <option key={d.Resources}>{d.Names.FI} co2/m2:{d.ConservativeDataConversionFactor * d.DataItems.DataValueItems[0].Value}</option>);
       return (
           <form id='sisalto'>
             <div>
@@ -39,7 +44,7 @@ const MateriaaliHaku = (props) => {
               <div>
                 <label htmlFor='numero'>neliöitä:</label>
                 <input id='numero' name='numero' type='number' label='numero' required/>
-                <button onClick={onSubmit}>lisää</button>
+                <button onClick={onSubmit}>lisää materiaali</button>
               </div>
             </div>
           </form>
