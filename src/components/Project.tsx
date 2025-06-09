@@ -10,14 +10,10 @@ const Project = ({project}) => {
         window.location.reload()
     }
 
-    const onOpen = () => {
-        
-    }
-
     return (
         <div>
             {project.projectName}
-            <button onClick={() => {onOpen()}}>avaa projekti</button>
+            <button onClick={() => {window.location.href=`/projekti/${project.id}`}}>avaa projekti</button>
             <button onClick={() => {onDelete()}}>poista</button>
         </div>
     )

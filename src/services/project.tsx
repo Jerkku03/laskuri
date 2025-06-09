@@ -8,7 +8,7 @@ const setToken = newToken => {
 }
 
 const getProject = async id => {
-  const response = await axios.post(`${baseUrl}/${id}`)
+  const response = await axios.get(`${baseUrl}/${id}`)
   return response.data
 }
 
