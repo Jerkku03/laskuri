@@ -1,10 +1,10 @@
 import React from "react";
 import projectService from '../services/project'
-import {useSelector} from "react-redux";
 import { useState, useEffect } from "react";
 import Export from "../components/Pdf";
 import Fetch from "../services/Fetch";
 import MateriaaliHaku from "../components/MateriaaliHaku";
+import { useLocation } from "react-router-dom";
 
 const EditProjectPage = () => {
 
@@ -13,8 +13,12 @@ const EditProjectPage = () => {
     const [haku, setHaku] = useState('')
     const [data, setData] = useState(null)
 
-    const currentUrl = window.location.href
-    const id = currentUrl.split('/')[4]
+
+    const currentUrl = useLocation()
+    const id = currentUrl.pathname.substring(currentUrl.pathname.lastIndexOf('/') + 1)
+
+    console.log(id)
+
 
     useEffect(() => {
             projectService.getProject(id).then(project => {
@@ -24,9 +28,6 @@ const EditProjectPage = () => {
             )
         }, [])
     //console.log(project.materials)
-    const onNewMaterial = () => {
-        
-    }
 
     return (
         <div>

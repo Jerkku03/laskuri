@@ -1,15 +1,19 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import projectService from "../services/project";
+import { useNavigate } from "react-router-dom";
+
 
 const NewProjectPage = ({setErrorMessage}) => {
     const [projectName, setProjectName] = useState('')
 
+    const navigate = useNavigate()
+
     const handleNewProject = async (event) => {
         event.preventDefault()
         try {
-          projectService.create({projectName})
-          window.location.href='./projektit'
+          await projectService.create({projectName})
+          navigate("/projektit")
         } catch (exception) {
           setErrorMessage('error')
         }

@@ -1,28 +1,33 @@
 import React, { useEffect } from 'react'
-import {useState} from 'react'
-import allProjectService from '../services/allProjects'
 import PropTypes from 'prop-types'
 import Project from './Project'
-import {useSelector} from 'react-redux'
+import { useNavigate } from "react-router-dom";
+import projectService from '../services/project'
 
-const Projects = () => {
+const Projects = ({projects, setProjects}) => {
 
-    const [projects, setProjects] = useState([])
+    const navigate = useNavigate()
 
-    const id = useSelector((state) => state.user.user.id)
+    const onDelete = (name, projId) => {
+            if (window.confirm(`Poista ${name}?`)){
+                projectService.remove(projId)
+                const newProjects = projects.filter((project) => project.id != projId)
+                setProjects(newProjects)
+            }
+        }
 
-    useEffect(() => {
-        allProjectService.getAll({id}).then(projects => 
-            setProjects(projects)
-        )
-    }, [])
-    
-    console.log(projects)
-
+    if (projects != null){
     return (
         <>
-            {projects.map(project => <Project project={project}/>)}
+            <div>{projects.map((project) => 
+                <div>{project.projectName}
+            <button onClick={() => {navigate(`/projekti/${project.id}`)}}>avaa projekti</button>
+            <button onClick={() => {onDelete(project.projectName, project.id)}}>poista</button></div>)}</div>
         </>
+    )}
+
+    return (
+        <div>lataa...</div>
     )
 }
 
