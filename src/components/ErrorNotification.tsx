@@ -6,9 +6,9 @@ const ErrorNotification = ({ message }) => {
   }
 
   return (
-    <div>
+    <>
       {message}
-    </div>
+    </>
   )
 }
 

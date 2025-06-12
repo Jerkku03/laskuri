@@ -61,7 +61,7 @@ const Login = ({setErrorMessage}) => {
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button type="submit">login</button>
+        <button type="submit">kirjaudu</button>
       </form>
     </>
   )

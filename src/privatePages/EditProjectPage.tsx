@@ -17,9 +17,6 @@ const EditProjectPage = () => {
     const currentUrl = useLocation()
     const id = currentUrl.pathname.substring(currentUrl.pathname.lastIndexOf('/') + 1)
 
-    console.log(id)
-
-
     useEffect(() => {
             projectService.getProject(id).then(project => {
                 setProject(project)

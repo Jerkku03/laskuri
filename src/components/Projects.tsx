@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Project from './Project'
 import { useNavigate } from "react-router-dom";
 import projectService from '../services/project'
 
 const Projects = ({projects, setProjects}) => {
+    const [showMessage, setShowMessage] = useState(false);
 
     const navigate = useNavigate()
 
@@ -18,17 +19,23 @@ const Projects = ({projects, setProjects}) => {
 
     if (projects != null){
     return (
-        <>
+        <div>
             <div>{projects.map((project) => 
-                <div>{project.projectName}
-            <button onClick={() => {navigate(`/projekti/${project.id}`)}}>avaa projekti</button>
-            <button onClick={() => {onDelete(project.projectName, project.id)}}>poista</button></div>)}</div>
-        </>
+                <div className='project-list' key={project.id}>
+            <p className='project-list-text'>{project.projectName}</p>
+            <button className='project-list-open' onClick={() => {navigate(`/projekti/${project.id}`)}}>avaa projekti</button>
+            <button className='project-list-delete' onClick={() => {onDelete(project.projectName, project.id)}}>poista</button></div>)}</div>
+        </div>
     )}
 
+    const timer = setTimeout(() => { 
+      setShowMessage(true)
+    }, 5000);
+
     return (
-        <div>lataa...</div>
-    )
+    <>
+    {showMessage ? <div data-testid='succeed'>ei projekteja</div> : 'lataa...'}
+    </>)
 }
 
 export default Projects

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import ErrorNotification from './components/ErrorNotification';
-import SuccessNotification from './components/SucceessNotification';
+import SucceedNotification from './components/SucceedNotification';
 import Navbar from './components/Navbar';
 import {
   BrowserRouter as Router,
@@ -23,7 +23,13 @@ import { addUser } from './redux/slices/userSlice';
 
 const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
-  const [successMessage, setSuccessMessage] = useState(null)
+  const [succeedMessage, setSucceedMessage] = useState(null)
+
+  //testi
+  const toimii = 'toimii'
+  useEffect(()=>
+  setSucceedMessage(toimii))
+  const timeout=5000
 
   const user = useSelector((state) => state.user.user)
   
@@ -40,9 +46,9 @@ const App = () => {
   }, [])
 
   return (
-  <>
+  <div id='body'>
     <ErrorNotification message={errorMessage} />
-    <SuccessNotification message={successMessage} />
+    <SucceedNotification message={succeedMessage} timeout={timeout}/>
 
     {!user && 
     <Navbar Link={Link}/>
@@ -68,7 +74,7 @@ const App = () => {
       <Route path='/projekti/:id' element={<EditProjectPage />}></Route>
     </Routes>
     }
-  </>
+  </div>
   )
 }
 
