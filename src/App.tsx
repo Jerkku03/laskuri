@@ -25,12 +25,6 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [succeedMessage, setSucceedMessage] = useState(null)
 
-  //testi
-  const toimii = 'toimii'
-  useEffect(()=>
-  setSucceedMessage(toimii))
-  const timeout=5000
-
   const user = useSelector((state) => state.user.user)
   
 
@@ -48,32 +42,30 @@ const App = () => {
   return (
   <div id='body'>
     <ErrorNotification message={errorMessage} />
-    <SucceedNotification message={succeedMessage} timeout={timeout}/>
 
     {!user && 
     <Navbar Link={Link}/>
     }
-    {!user && 
-    <Routes>
+    {user && 
+    <PrivateNavBar Link={Link}/>
+    }
+      {!user && 
+      <Routes>
       <Route path='/uusi' element={<NewUserPage setErrorMessage={setErrorMessage}/>}></Route>
       <Route path='/kirjaudu' element={<LoginPage setErrorMessage={setErrorMessage}/>}/>
       <Route path='/*' element={<FrontPage/>}></Route>
       <Route path='/etusivu' element={<FrontPage/>}></Route>
-    </Routes>
+      </Routes>
      }
-
-    {user && 
-    <PrivateNavBar Link={Link}/>
-    }
-    
     {user &&  
-    <Routes>
+      <Routes>
       <Route path='/projektit' element={<ProjectsPage/>}></Route>
       <Route path='/*' element={<ProjectsPage/>}></Route>
       <Route path='/uusi_projekti' element={<NewProjectPage setErrorMessage={setErrorMessage}/>}></Route>
       <Route path='/projekti/:id' element={<EditProjectPage />}></Route>
-    </Routes>
-    }
+      </Routes>
+}
+    
   </div>
   )
 }

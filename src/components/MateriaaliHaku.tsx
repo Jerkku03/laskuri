@@ -36,7 +36,7 @@ const MateriaaliHaku = ({data, lista, haku, setLista, projectName, id}) => {
     }
   
     if (data != null) {
-      const listaMater = data.Resources.filter((d) => d.Names.FI.toLowerCase().includes(haku)).map((d) => <option key={d.ResourceId}>{d.Names.FI} co2/m2:{d.ConservativeDataConversionFactor * d.DataItems.DataValueItems[0].Value}</option>);
+      const listaMater = data.Resources.filter((d) => d.Names.FI.toLowerCase().includes(haku)).map((d) => <option key={d.ResourceId}>{d.Names.FI} {(d.Conversions !== undefined && d.Conversions.length > 0 && d.Conversions[0].Unit != 'unit' ? d.Conversions[0].Unit : '1kpl')}:  {(d.DataItems.DataValueItems[0].Value * (d.Conversions !== undefined && d.Conversions.length > 0 ? d.Conversions[0].Value : 1)).toFixed(2)} </option>);
       return (
           <form id='sisalto'>
             <div>
@@ -46,7 +46,7 @@ const MateriaaliHaku = ({data, lista, haku, setLista, projectName, id}) => {
               </div>
               <br />
               <div>
-                <label htmlFor='numero'>neliöitä:</label>
+                <label htmlFor='numero'>määrä:</label>
                 <input id='numero' name='numero' type='number' label='numero' required/>
                 <button onClick={onSubmit}>lisää materiaali</button>
               </div>

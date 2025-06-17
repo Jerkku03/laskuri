@@ -12,8 +12,13 @@ const Projects = ({projects, setProjects}) => {
     const onDelete = (name, projId) => {
             if (window.confirm(`Poista ${name}?`)){
                 projectService.remove(projId)
+                if (projects === undefined || projects.length <= 1) {
+                    console.log('toimii')
+                    setProjects(null)
+                    navigate(0)
+                } else{
                 const newProjects = projects.filter((project) => project.id != projId)
-                setProjects(newProjects)
+                setProjects(newProjects)}
             }
         }
 
@@ -30,7 +35,7 @@ const Projects = ({projects, setProjects}) => {
 
     const timer = setTimeout(() => { 
       setShowMessage(true)
-    }, 5000);
+    }, 2000);
 
     return (
     <>

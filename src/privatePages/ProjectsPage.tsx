@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import Projects from "../components/Projects";
-import { useNavigate } from "react-router-dom";
-import {useState} from 'react'
-import allProjectService from '../services/allProjects'
+import { useLocation, useNavigate } from "react-router-dom";
+import {useState} from 'react';
+import allProjectService from '../services/allProjects';
 import { useSelector } from "react-redux";
 
 
@@ -14,10 +14,15 @@ const ProjectsPage = () => {
 
     const id = useSelector((state) => state.user.user.id)
 
-    useEffect(() => {
-            allProjectService.getAll(id).then(projects => 
-                setProjects(projects)
+    async function loadData() {
+            await allProjectService.getAll(id)
+            .then(pro => 
+                setProjects(pro)
             )
+        }
+
+    useEffect(() => {
+        loadData()
         }, [])
     
     return (

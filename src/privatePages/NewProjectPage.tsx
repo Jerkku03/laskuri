@@ -4,7 +4,7 @@ import projectService from "../services/project";
 import { useNavigate } from "react-router-dom";
 
 
-const NewProjectPage = ({setErrorMessage}) => {
+const NewProjectPage = ({setErrorMessage, setProjects}) => {
     const [projectName, setProjectName] = useState('')
 
     const navigate = useNavigate()
@@ -13,12 +13,10 @@ const NewProjectPage = ({setErrorMessage}) => {
         event.preventDefault()
         try {
           await projectService.create({projectName})
-          navigate("/projektit")
         } catch (exception) {
           setErrorMessage('error')
         }
-
-        return null
+        navigate("/projektit")
     }
     return (
         <>

@@ -30,7 +30,7 @@ const Export = ({lista, id, projectName, setLista}) => {
           <h3>Rakentamiseen käytettävät päästöt:</h3>
           {lista.map((d) => <div style={{display:'flex', gap: 5}} key={d.materiaali}>
           <div>{d.materiaali}</div>       
-          <div>m2: {d.maara}</div>   
+          <div>kpl: {d.maara}</div>   
           <div>co2: {parseFloat(d.maara*d.co2).toFixed(2)}</div>
           <button onClick={() => {onDelete(d.id)}}>Poista</button>
           </div>)}

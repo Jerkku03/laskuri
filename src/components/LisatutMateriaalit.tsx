@@ -7,7 +7,7 @@ const LisatutMateriaalit = (props) => {
     if (lista.length > 0){
       const listItems = lista.map((d) => <tr key={d.materiaali}>
         <td>{d.materiaali}</td>       
-        <td>neliöitä: {d.maara}</td>   
+        <td>kpl: {d.maara}</td>   
         <td>co2: {(d.maara*d.co2)}</td>
         </tr>);
       return (
