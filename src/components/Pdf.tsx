@@ -28,7 +28,7 @@ const Export = ({lista, id, projectName, setLista}) => {
         }}>
             
           <h3>Rakentamiseen käytettävät päästöt:</h3>
-          {lista.map((d) => <div style={{display:'flex', gap: 5}} key={d.materiaali}>
+          {lista.map((d) => <div className='project-list' key={d.materiaali}>
           <div>{d.materiaali}</div>       
           <div>kpl: {d.maara}</div>   
           <div>co2: {parseFloat(d.maara*d.co2).toFixed(2)}</div>

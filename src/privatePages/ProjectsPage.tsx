@@ -26,12 +26,13 @@ const ProjectsPage = () => {
         }, [])
     
     return (
-        <>
+        <div className="projects-background">
+        <h2>Projektit:</h2>
         <Projects projects={projects} setProjects={setProjects}/>
         <div>
         <button className="new-project-button" type='button' onClick={() => {navigate("/uusi_projekti")}}>uusi projekti</button>
         </div>
-        </>
+        </div>
     )
 }
 
