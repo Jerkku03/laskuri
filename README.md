@@ -22,7 +22,8 @@ Uuden version vieminen tuotantoon tapahtuu backendissä komennolla npm run deplo
 Frontend toimii react vitellä, hyödyntäen react routeria. Tilanhallinta on toteutettu suurimmaksi osaksi useState ja useEffect hookkien avulla, mutta user käyttää redux toolkittiä. Backend toimii restful periaatteella. Backend tehty node.js ja expressillä. Tietokantayhteydet mongoose kirjastolla. Tietokantana MongoDB Atlas. co2 tietokannan data tallennettu json tiedostona backendiin. 
 
 Kirjautuminen toimii token perusteisesti hyödyntäen jwt kirjastoa, tallentaen tokenin frontissa lokalstorageen. Salasana hashatty bcrypt kirjastolla. 
-![alt text](<Näyttökuva 2025-06-25 kello 15.06.16-1.png>)
+
+<img alt='image' src='./tokenKirjautuminen.png'/>
 
 ## Rakenne
 
