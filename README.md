@@ -19,7 +19,7 @@ Uuden version vieminen tuotantoon tapahtuu backendissä komennolla npm run deplo
 
 ## Tekninen kuvaus
 
-Frontend toimii react vitellä, hyödyntäen react routeria. Tilanhallinta on toteutettu suurimmaksi osaksi useState ja useEffect hookkien avulla, mutta user käyttää redux toolkittiä. Backend toimii restful periaatteella. Backend tehty node.js ja expressillä. Tietokantayhteydet mongoose kirjastolla. Tietokantana MongoDB Atlas. co2 tietokannan data tallennettu json tiedostona backendiin. 
+Frontend toimii react vitellä, hyödyntäen react routeria. Tilanhallinta on toteutettu suurimmaksi osaksi useState ja useEffect hookkien avulla, mutta user käyttää redux toolkittiä. Backend toimii restful periaatteella. Backend tehty node.js ja expressillä. Tietokantayhteydet mongoose kirjastolla. Tietokantana MongoDB Atlas. co2 tietokannan data tallennettu json tiedostona backendiin. Fronttia testattu vitestin ja react testing libraryn yhdistelmällä. Backendiä node:testillä, sekä api:ta supertest kirjastolla. 
 
 Kirjautuminen toimii token perusteisesti hyödyntäen jwt kirjastoa, tallentaen tokenin frontissa lokalstorageen tunnin aikarajalla. Salasana hashatty bcrypt kirjastolla. 
 
