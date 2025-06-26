@@ -48,6 +48,7 @@ const NewUserPage = ({setErrorMessage}) => {
 
   return (
     <>
+      <div>2 viikon ilmainen kokeilu, tämän jälkeen 59,99/kk</div>
       <h2>Luo käyttäjä</h2>
       <form onSubmit={handleLogin}>
         <div>
