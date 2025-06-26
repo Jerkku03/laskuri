@@ -27,7 +27,7 @@ Kirjautuminen toimii token perusteisesti hyödyntäen jwt kirjastoa, tallentaen 
 
 ## Rakenne
 
-
+<img alt='image' src='./rakenne.png'/>
 
 
 
