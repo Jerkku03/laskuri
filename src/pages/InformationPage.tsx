@@ -3,7 +3,8 @@ import React from "react";
 const InformationPage = () => {
     return (
         <div>
-            <h1>päästölaskentaohjelmisto</h1>
+            <h3>miltä ohjelmisto näyttää:</h3>
+            <img className="firstPic" src="../päästölaskuri.png" alt="image"/>
         </div>
     )
 }

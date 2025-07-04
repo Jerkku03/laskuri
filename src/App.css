@@ -33,11 +33,8 @@
 
 .footer {
   padding-left: 20px;
-  position: absolute;
-  left:0;
-  bottom:0;
-  right:0;
-  background-color: rgb(212, 218, 218);
+  margin-top: auto;
+  background-color: rgb(235, 241, 241);
   height: 200px;
 }
 
@@ -148,5 +145,9 @@
 .projects-background {
   background-color: rgba(245, 245, 245, 1);
   height: 100%;
+  width: 100%;
+}
+
+.firstPic {
   width: 100%;
 }

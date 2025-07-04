@@ -12,8 +12,7 @@ const Projects = ({projects, setProjects}) => {
     const onDelete = (name, projId) => {
             if (window.confirm(`Poista ${name}?`)){
                 projectService.remove(projId)
-                if (projects === undefined || projects.length <= 1) {
-                    console.log('toimii')
+                if (projects === undefined || projects.length < 1) {
                     setProjects(null)
                     navigate(0)
                 } else{
@@ -41,6 +40,8 @@ const Projects = ({projects, setProjects}) => {
     <>
     {showMessage ? <div data-testid='succeed'>ei projekteja</div> : 'lataa...'}
     </>)
+
+    
 }
 
 export default Projects

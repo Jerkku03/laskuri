@@ -25,6 +25,10 @@ const ProjectsPage = () => {
         loadData()
         }, [])
     
+        if (projects == null) {
+        loadData()
+    }
+    
     return (
         <div className="projects-background">
         <h2>Projektit:</h2>

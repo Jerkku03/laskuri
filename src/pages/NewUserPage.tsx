@@ -2,7 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import newUserService from '../services/newUser'
 import PropTypes from 'prop-types'
-
+import projectService from '../services/project'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser } from '../redux/slices/userSlice';
 
@@ -34,6 +34,8 @@ const NewUserPage = ({setErrorMessage}) => {
       window.localStorage.setItem(
         'loggedNoteappUser', JSON.stringify(user)
       )
+      projectService.setToken(user.token)
+
       dispatch(addUser(user))
 
       setUsername('')
@@ -48,7 +50,6 @@ const NewUserPage = ({setErrorMessage}) => {
 
   return (
     <>
-      <div>2 viikon ilmainen kokeilu, tämän jälkeen 59,99/kk</div>
       <h2>Luo käyttäjä</h2>
       <form onSubmit={handleLogin}>
         <div>
