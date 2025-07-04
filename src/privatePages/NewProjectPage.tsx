@@ -4,7 +4,7 @@ import projectService from "../services/project";
 import { useNavigate } from "react-router-dom";
 
 
-const NewProjectPage = ({setErrorMessage, setProjects}) => {
+const NewProjectPage = ({setErrorMessage}) => {
     const [projectName, setProjectName] = useState('')
 
     const navigate = useNavigate()
