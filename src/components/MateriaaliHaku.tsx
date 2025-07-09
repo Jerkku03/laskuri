@@ -42,7 +42,7 @@ const MateriaaliHaku = ({data, lista, haku, setLista, projectName, id}) => {
             <div>
               <div>
                 <label htmlFor='materiaalit'>valitse materiaali:</label>
-                <select name='materiaalit' label='materiaali:' id='materiaalit'>{listaMater}</select>
+                <select className='materiaalit' name='materiaalit' label='materiaali:' id='materiaalit'>{listaMater}</select>
               </div>
               <br />
               <div>
