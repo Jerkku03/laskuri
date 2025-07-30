@@ -36,7 +36,7 @@ const MateriaaliHaku = ({data, lista, haku, setLista, projectName, id}) => {
     }
   
     if (data != null) {
-      const listaMater = data.Resources.filter((d) => d.Names.FI.toLowerCase().includes(haku)).map((d) => <option key={d.ResourceId}>{d.Names.FI} {(d.Conversions !== undefined && d.Conversions.length > 0 && d.Conversions[0].Unit != 'unit' ? d.Conversions[0].Unit : '1kpl')}:  {(d.DataItems.DataValueItems[0].Value * (d.Conversions !== undefined && d.Conversions.length > 0 ? d.Conversions[0].Value : 1)).toFixed(2)} </option>);
+      const listaMater = data.Resources.filter((d) => d.Names.FI.toLowerCase().includes(haku.toLowerCase())).map((d) => <option key={d.ResourceId}>{d.Names.FI} {(d.Conversions !== undefined && d.Conversions.length > 0 && d.Conversions[0].Unit != 'unit' ? d.Conversions[0].Unit : '1kpl')}:  {(d.DataItems.DataValueItems[0].Value * (d.Conversions !== undefined && d.Conversions.length > 0 ? d.Conversions[0].Value : 1)).toFixed(2)} </option>);
       return (
           <form id='sisalto'>
             <div>
