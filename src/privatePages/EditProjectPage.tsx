@@ -44,7 +44,7 @@ const EditProjectPage = () => {
                 <p>hae materiaalia:<input id='matKork' value={haku} onChange={(e) => setHaku(e.target.value)}/> </p>
                 <MateriaaliHaku data={data} lista={lista} setLista={setLista} haku={haku} projectName={project.projectName} id={id}/>
             </div>
-            <Fetch setData={setData}></Fetch>
+            <Fetch setData={setData}/>
             <div>
                   <Export lista={lista} id={id} projectName={project.projectName} setLista={setLista}/>
             </div>

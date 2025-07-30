@@ -1,7 +1,7 @@
 import React from "react";
 import projectService from '../services/project'
 
-const MateriaaliHaku = ({data, lista, haku, setLista, projectName, id}) => {
+const MateriaaliHaku = ({data, lista, haku, setLista, projectName, id}: {data: any, lista: any, haku: string, setLista: any, projectName: string, id: string }) => {
   
     const onSubmit = (e) => {
       e.preventDefault();
