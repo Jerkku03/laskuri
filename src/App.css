@@ -1,3 +1,8 @@
+:root {
+  --colorprimary: rgba(239, 229, 52, 1);
+  --colorsecondary: rgb(37, 112, 203);
+}
+
 
 #body {
   height: 100vh;
@@ -154,4 +159,14 @@
 
 .materiaalit {
   width: 100%;
+}
+
+.save-file-btn {
+  background-color: #c0b6b6;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  border-color: black;
+  margin: 8px;
 }

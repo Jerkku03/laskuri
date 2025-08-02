@@ -2,7 +2,7 @@ import React from 'react';
 
 import html2pdf from 'html2pdf.js';
 import "../App.css"
-import { display } from 'html2canvas/dist/types/css/property-descriptors/display';
+import { CSVLink } from "react-csv";
 import projectService from '../services/project';
 
 
@@ -14,7 +14,7 @@ const Export = ({lista, id, projectName, setLista}) => {
     setLista(filtered)
   }
 
-  const printDocument = () => {
+  const savePdf = () => {
     const input = document.getElementById('divToPrint');
     html2pdf().from(input).save('päästölaskelma')
   };
@@ -36,7 +36,8 @@ const Export = ({lista, id, projectName, setLista}) => {
           </div>)}
           <h4>kokonaispäästöt: {parseFloat(lista.reduce((summa, a) => summa + a.maara*a.co2, 0)).toFixed(2)} co2 </h4>
       </div>
-      <button onClick={() => {printDocument()}}>Tallenna PDF</button>
+      <button onClick={() => {savePdf()}}>Tallenna PDF</button>
+      <CSVLink data={lista} filename={'Päästölaskelma'} className={'save-file-btn'} target="_blank">Tallenna CSV</CSVLink>
       </>
   )}
 
