@@ -16,28 +16,42 @@ const Export = ({lista, id, projectName, setLista}) => {
 
   const savePdf = () => {
     const input = document.getElementById('divToPrint');
-    html2pdf().from(input).save('päästölaskelma')
+    console.log(input)
+    html2pdf()
+    .set({
+    margin: [10, 20],
+    html2canvas: {
+      scale: 4,
+      letterRendering: true,
+    },
+  })
+    .from(input)
+    .save('päästölaskelma')
   };
 
     return (
       <>
       <div id="divToPrint" className="mt4" style={{
-        backgroundColor: '#f5f5f5',
         width: 'auto',
         minHeight: '200px',
         }}>
-            
-          <h3>Rakentamiseen käytettävät päästöt:</h3>
+          <h3 className='hiilijalanOtsikko'>Rakentamisen hiilijalanjälki / rakennusluettelo:</h3>
           {lista.map((d) => <div className='project-list' key={d.materiaali}>
-          <div>{d.materiaali}</div>       
-          <div>kpl: {d.maara}</div>   
-          <div>co2: {parseFloat(d.maara*d.co2).toFixed(2)}</div>
-          <button onClick={() => {onDelete(d.id)}}>Poista</button>
+          <div className='listItem'>
+            <div>{d.materiaali}</div>
+          </div>       
+          <div className='listItem'>
+            <div>kpl: {d.maara}</div>
+            </div>   
+          <div className='listItem'>
+            <div>co2: {parseFloat(d.maara*d.co2).toFixed(2)}</div>
+          </div>
+            <button data-html2canvas-ignore="true" onClick={() => {onDelete(d.id)}}>Poista</button>
           </div>)}
-          <h4>kokonaispäästöt: {parseFloat(lista.reduce((summa, a) => summa + a.maara*a.co2, 0)).toFixed(2)} co2 </h4>
+          <h4 className='kokonaisPaastot'>kokonaispäästöt: {parseFloat(lista.reduce((summa, a) => summa + a.maara*a.co2, 0)).toFixed(2)} co2 </h4>
       </div>
-      <button onClick={() => {savePdf()}}>Tallenna PDF</button>
-      <CSVLink data={lista} filename={'Päästölaskelma'} className={'save-file-btn'} target="_blank">Tallenna CSV</CSVLink>
+      <button className='tallennaPdf' onClick={() => {savePdf()}}>Tallenna PDF</button>
+      <CSVLink data={lista} filename={'Päästölaskelma'} target="_blank"><button>Tallenna CSV</button></CSVLink>
       </>
   )}
 

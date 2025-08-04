@@ -39,15 +39,18 @@ const EditProjectPage = () => {
         Toista prosessi kunnes olet lisännyt kaikki haluamasi materiaalit. <br />
         Lopuksi klikkaa nappia Tallenna PDF, niin laskelma tallentuu tietokoneellesi.
     </p>
-            <h2>{project.projectName}</h2>
+            <h2>Projekti: {project.projectName}</h2>
             <div>
-                <p>hae materiaalia:<input id='matKork' value={haku} onChange={(e) => setHaku(e.target.value)}/> </p>
+                <div className="materiaaliHaku">
+                <p className="hakuMarginaali">hae materiaalia:</p>
+                <input id='matKork' className='materiaalit' value={haku} onChange={(e) => setHaku(e.target.value)}/> 
+                </div>
                 <MateriaaliHaku data={data} lista={lista} setLista={setLista} haku={haku} projectName={project.projectName} id={id}/>
             </div>
             <Fetch setData={setData}/>
-            <div>
+            <div className="listaRaja">
                   <Export lista={lista} id={id} projectName={project.projectName} setLista={setLista}/>
-            </div>
+                  </div>
             </>}
 
         </div>

@@ -40,13 +40,13 @@ const MateriaaliHaku = ({data, lista, haku, setLista, projectName, id}: {data: a
       return (
           <form id='sisalto'>
             <div>
-              <div>
-                <label htmlFor='materiaalit'>valitse materiaali:</label>
+              <div className="materiaaliHaku">
+                <label className='hakuMarginaali' htmlFor='materiaalit'>valitse materiaali:</label>
                 <select className='materiaalit' name='materiaalit' label='materiaali:' id='materiaalit'>{listaMater}</select>
               </div>
               <br />
-              <div>
-                <label htmlFor='numero'>määrä:</label>
+              <div className="materiaaliHaku">
+                <label className='hakuMarginaali' htmlFor='numero'>määrä:</label>
                 <input id='numero' name='numero' type='number' label='numero' required/>
                 <button onClick={onSubmit}>lisää materiaali</button>
               </div>
