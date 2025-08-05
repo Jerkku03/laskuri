@@ -8,7 +8,7 @@ const FrontPage = () => {
         <>
         <div className="FirstHeader">Yksi työmaa, monta päästöä - laske määrä!</div>
         <p className="subHeading">Helppoa päästölaskentaa! Kaikki materiaalien päästöt yhdestä paikasta valmiiksi laskelmaksi.</p>
-        <button className="register" onClick={() => {navigate('/uusi')}}>Rekisteröidy ilmaiseksi!</button>
+        <button className="register" onClick={() => {navigate('/uusi')}}>Kokeile maksutta!</button>
         </>
     )
 }

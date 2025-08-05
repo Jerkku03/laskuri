@@ -50,6 +50,12 @@ const NewUserPage = ({setErrorMessage}) => {
 
   return (
     <>
+    <h2>Laskurin maksuton kokeilu</h2>
+    <div>
+      <p>Laskurin kokeileminen on ilmaista, eikä sido mihinkään. </p>
+      <p>Kokeilussa pystyy luomaan tuoteluettelon ja laskea rakentamisen hiilidioksidipäästöt.</p>
+      <p>Tunnukset ovat voimassa 7pv</p>
+    </div>
       <h2>Luo käyttäjä</h2>
       <form onSubmit={handleLogin}>
         <div>
@@ -88,7 +94,7 @@ const NewUserPage = ({setErrorMessage}) => {
             onChange={({ target }) => setPasswordAgain(target.value)}
           />
         </div>
-        <button type="submit">luo käyttäjä</button>
+        <button type="submit">Aloita koekäyttö</button>
       </form>
     </>
   )
